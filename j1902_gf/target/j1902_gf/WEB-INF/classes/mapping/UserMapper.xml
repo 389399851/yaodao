@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yd.j1902_gf.mapper.UserMapper">
+    <resultMap id="userMap" type="com.yd.j1902_gf.pojo.User">
+        <id property="id" column="ID"/>
+        <result property="uname" column="UNAME"/>
+        <result property="upw" column="UPW"/>
+        <result property="email" column="EMAIL"/>
+        <result property="type" column="TYPE"/>
+        <result property="idcard" column="IDCARD"/>
+        <result property="iphone" column="IPHONE"/>
+        <result property="name" column="NAME"/>
+        <result property="img" column="IMG"/>
+    </resultMap>
+    <sql id="sql">
+        ID,
+        UNAME,
+        UPW,
+        EMAIL,
+        TYPE,
+        IDCARD,
+        IPHONE,
+        NAME,
+        IMG
+    </sql>
+    <select id="findAll" resultMap="userMap">
+        SELECT
+        <include refid="sql"/>
+        FROM
+        USER
+    </select>
+    <select id="findByUserName" resultMap="userMap" parameterType="String">
+        SELECT
+        <include refid="sql"/>
+        FROM
+        USER
+        WHERE
+        UNAME=#{uname}
+    </select>
+    <insert id="registerByUsernameAndPassword" parameterType="com.yd.j1902_gf.pojo.User">
+        INSERT
+        INTO
+        USER
+        (uname,upw,email,type)
+        VALUES
+        (#{uname},#{upw},#{email},#{type})
+    </insert>
+    <insert id="useradd" parameterType="com.yd.j1902_gf.pojo.User">
+        INSERT
+        INTO
+        USER
+        (uname,name,email)
+        VALUES
+        (#{uname},#{name},#{email})
+    </insert>
+    <select id="getUserById" parameterType="int" resultMap="userMap">
+        SELECT
+        <include refid="sql"/>
+        FROM
+        USER
+        WHERE
+        ID=#{id}
+    </select>
+    <update id="update" parameterType="com.yd.j1902_gf.pojo.User">
+        UPDATE
+        USER
+        SET
+        UNAME=#{uname},
+        NAME=#{name},
+        EMAIL=#{email}
+        WHERE
+        ID=#{id}
+    </update>
+</mapper>

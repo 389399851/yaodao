@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>审核页面</h1>
+    <form action="shengheshi" method="post" th:each="shiming:${session.shengheyemian}">
+        <input type="text" name="uname" th:value="${shiming.getUname()}"/><br/>
+        <br/>
+        <hr/>
+        <input type="text" name="email" th:value="${shiming.getEmail()}"/><br/>
+        <br/>
+        <hr/>
+        <input type="text" name="idcard" th:value="${shiming.getIdcard()}"/><br/>
+        <br/>
+        <hr/>
+        <input type="text" name="iphone" th:value="${shiming.getIphone()}"/><br/>
+        <br/>
+        <hr/>
+        <input type="text" name="name" th:value="${shiming.getName()}"/><br/>
+        <br/>
+        <hr/>
+        <input type="text" name="img" th:value="${shiming.getImg()}"/><br/>
+        <br/>
+        <hr/>
+        <input type="text" name="leixing" th:value="${shiming.getLeixing()}"/><br/>
+        <br/>
+        <hr/>
+        通过:<input type="radio" name="queren" value="yes" checked /><br/>
+        <hr/>
+        不通过:<input type="radio" name="queren" value="no" /><br/>
+        <br/>
+        <hr/>
+        <input type="submit" value="确认"/>
+    </form>
+
+</body>
+</html>
